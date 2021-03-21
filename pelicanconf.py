@@ -27,7 +27,7 @@ LINKS = (('Pelican', 'https://getpelican.com/'),
 # Social widget
 SOCIAL = (('Github', 'https://github.com/rodrigobmedeiros'),
           ('Linkedin', 'https://www.linkedin.com/in/rodrigo-bernardo-medeiros-03649152/'),
-          ('Instagram', 'https://www.instagram.com/digaomedeiros.dev.python/'),
+          ('Instagram', 'https://www.instagram.com/digaomedeiros.dev.python/')
          )
 
 DEFAULT_PAGINATION = 10
