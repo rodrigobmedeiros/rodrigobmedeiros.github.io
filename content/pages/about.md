@@ -1,8 +1,6 @@
 title: About
 date: 2021-03-20 16:00
 
-<img align="center" src=profile_foto alt="">
-
 ![profile][profile_foto]
 
 <p align="center">
