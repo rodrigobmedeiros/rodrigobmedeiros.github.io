@@ -11,4 +11,4 @@ date: 2021-03-20 16:00
     Espero que gostem e sejam bem vindos!
 </p>
     
-[profile_foto]:../images/profile.jpg
+[profile_foto]:../images/profile_2.jpg
