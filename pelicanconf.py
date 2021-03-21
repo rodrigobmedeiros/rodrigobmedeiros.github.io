@@ -22,12 +22,13 @@ AUTHOR_FEED_RSS = None
 LINKS = (('Pelican', 'https://getpelican.com/'),
          ('Python.org', 'https://www.python.org/'),
          ('Jinja2', 'https://palletsprojects.com/p/jinja/'),
-         ('You can modify those links in your config file', '#'),)
+        )
 
 # Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),
-          ('Linkedin', 'https://www.linkedin.com/in/rodrigo-bernardo-medeiros-03649152/'))
+SOCIAL = (('Github', 'https://github.com/rodrigobmedeiros'),
+          ('Linkedin', 'https://www.linkedin.com/in/rodrigo-bernardo-medeiros-03649152/'),
+          ('Instagram', 'https://www.instagram.com/digaomedeiros.dev.python/'),
+         )
 
 DEFAULT_PAGINATION = 10
 
