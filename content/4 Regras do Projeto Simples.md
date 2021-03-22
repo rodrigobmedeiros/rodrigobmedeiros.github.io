@@ -1,17 +1,15 @@
-title: About
-date: 2021-03-20 16:00
+title: 4 Regras do Projeto Simples
+date: 2021-03-21 22:00
 author: Rodrigo B. Medeiros
 
 ![][main_image]
 
-
-
 # 4 Regras do Projeto Simples
   
   
-Logo no início de minha jornada de transição de carreira, comecei a ver muita coisa sobre desenvolvimento de software, incluindo cursos, livros, perfis em redes sociais, canais no youtube, entre outras diversas fontes. E é claro que sofri o que acredito que muitas pessoas sofram, ter muito conteúdo disponível porém sem saber como começar e pra onde ir.\
-Um dos livros que mais ouvi falar e que adquiri rapidamente foi o `Clean Code` do dignissimo uncle Bob. Este é um dos livros que grande parte da comunidade cita como sendo uma referência que deve obrigatoriamente ser lida. Na época, comecei a lê-lo mas de fato estava bem no início de tudo e não consegui entender grande parte de seu conteúdo.\
-Há poucos dias peguei o livro novamente, quase um ano depois da leitura inicial com um objetivo em mente: estuda-lo em detalhes absorvendo o máximo possível dos ensinamentos e utilizando cada tópico o mais rápido possível em meu dia a dia. E como criei o blog pensando principalmente em compartilhar conhecimento, vou utilizar alguns posts para falar um pouco sobre o que foi aprendido ao longo dos capítulos do livro.\
+Logo no início de minha jornada de transição de carreira, comecei a ver muita coisa sobre desenvolvimento de software, incluindo cursos, livros, perfis em redes sociais, canais no youtube, entre outras diversas fontes. E é claro que sofri o que acredito que muitas pessoas sofram, ter muito conteúdo disponível porém sem saber como começar e pra onde ir.
+Um dos livros que mais ouvi falar e que adquiri rapidamente foi o `Clean Code` do dignissimo uncle Bob. Este é um dos livros que grande parte da comunidade cita como sendo uma referência que deve obrigatoriamente ser lida. Na época, comecei a lê-lo mas de fato estava bem no início de tudo e não consegui entender grande parte de seu conteúdo.
+Há poucos dias peguei o livro novamente, quase um ano depois da leitura inicial com um objetivo em mente: estuda-lo em detalhes absorvendo o máximo possível dos ensinamentos e utilizando cada tópico o mais rápido possível em meu dia a dia. E como criei o blog pensando principalmente em compartilhar conhecimento, vou utilizar alguns posts para falar um pouco sobre o que foi aprendido ao longo dos capítulos do livro.
 Hoje vou falar um pouco sobre o `capítulo 12 - Emergências`, que apesar deste título aborda principalmente a definição de 4 regras simples para o desenvolvimento de um bom projeto de software. De acordo com Kent Beck, as 4 regras são as seguintes:
 
 - Efetuar todos os testes.
