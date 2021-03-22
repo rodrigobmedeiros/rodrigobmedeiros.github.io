@@ -1,6 +1,7 @@
 title: 4 Regras do Projeto Simples
 date: 2021-03-21 22:00
 author: Rodrigo B. Medeiros
+category: Articles
 
 ![][main_image]
 
