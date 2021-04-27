@@ -3,7 +3,7 @@ date: 2021-04-27 16:00
 author: Rodrigo B. Medeiros
 category: Articles
 
-![][main_image]
+![image][main_image]
 
 # __Vocês precisam conhecer as namedtuples__
   
@@ -157,3 +157,8 @@ __Rodrigo B. Medeiros__
 [main_image]:images/PythonNamedTuple.jpeg
 [pybites_link]:https://pybit.es/
 [namedtuples_link]: https://docs.python.org/3/library/collections.html#namedtuple-factory-function-for-tuples-with-named-fields
+
+img[alt="image"] { 
+  max-width:  20px; 
+  display: block;
+}
