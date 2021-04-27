@@ -1,5 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Tech Blog - Rodrigo Bernardo - Articles</title><link href="/" rel="alternate"></link><link href="/feeds/articles.atom.xml" rel="self"></link><id>/</id><updated>2021-03-21T22:00:00-03:00</updated><entry><title>4 Regras do Projeto Simples</title><link href="/4-regras-do-projeto-simples.html" rel="alternate"></link><published>2021-03-21T22:00:00-03:00</published><updated>2021-03-21T22:00:00-03:00</updated><author><name>Rodrigo B. Medeiros</name></author><id>tag:None,2021-03-21:/4-regras-do-projeto-simples.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="images/cleanCode.jpg"&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Tech Blog - Rodrigo Bernardo - Articles</title><link href="/" rel="alternate"></link><link href="/feeds/articles.atom.xml" rel="self"></link><id>/</id><updated>2021-04-27T16:00:00-03:00</updated><entry><title>Vocês precisam conhecer as namedtuples</title><link href="/voces-precisam-conhecer-as-namedtuples.html" rel="alternate"></link><published>2021-04-27T16:00:00-03:00</published><updated>2021-04-27T16:00:00-03:00</updated><author><name>Rodrigo B. Medeiros</name></author><id>tag:None,2021-04-27:/voces-precisam-conhecer-as-namedtuples.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="images/PythonNamedTuple.jpeg"&gt;&lt;/p&gt;
+&lt;h1&gt;&lt;strong&gt;Vocês precisam conhecer as namedtuples&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;Mesmo quem começou a desenvolver em python faz pouco tempo (me incluo nessa categoria), tem familiariade com algumas estruturas de dados que são muito presentes na linguagem, como as listas, os dicionários, os sets e as tuples. Diria que conhecendo bem essas estruturas, é possível …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="" src="images/PythonNamedTuple.jpeg"&gt;&lt;/p&gt;
+&lt;h1&gt;&lt;strong&gt;Vocês precisam conhecer as namedtuples&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;Mesmo quem começou a desenvolver em python faz pouco tempo (me incluo nessa categoria), tem familiariade com algumas estruturas de dados que são muito presentes na linguagem, como as listas, os dicionários, os sets e as tuples. Diria que conhecendo bem essas estruturas, é possível resolver uma grande variedade de problemas, onde cada estrutura tem suas peculiaridades. Uma comparação muito comum é entre listas e tuples, onde a principal diferença é que as listas são mutáveis, ou seja permitem modificações após sua criação, e as tuples são imutáveis, ou seja não permitem modificações após sua criação. Com relação as similaridades, listas e tuples aceitam elementos de tipos diferentes em uma mesma instância, tem os elementos acessados via índice e são usadas para agrupar informação.
+Passei algum tempo utilizando essas estruturas e elas sempre funcionaram muito bem para mim. Porém há alguns meses, fazendo alguns desafios de código pela plataforma &lt;a href="https://pybit.es/"&gt;pybites&lt;/a&gt; me deparei com algumas novas estruturas presentes no módulo &lt;strong&gt;collections&lt;/strong&gt;, que são basicamente subclasses das estruturas básicas com algumas funcionalidades especificas adicionadas. Dentre elas, tem uma em especial que passei a utilizar em praticamente todos os meus códigos e é sobre ela que vou falar um pouco mais hoje. São as &lt;strong&gt;namedtuples&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Neste artigo vamos ver:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;O que são namedtuples.&lt;/li&gt;
+&lt;li&gt;Como criar uma namedtuple.  &lt;/li&gt;
+&lt;li&gt;Como acessar elementos de uma namedtuple.  &lt;/li&gt;
+&lt;li&gt;Como converter uma namedtuple em um dicionário (e vice-versa).&lt;/li&gt;
+&lt;li&gt;Como utilizar namedtuples para criar classes derivadas.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;&lt;strong&gt;O que são namedtuples?&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Namedtuple é uma subclasse da classe tuple com a diferença básica de terem campos nomeados. Ou seja, além de podermos acessar os elementos através do índice e iterando entre eles, podemos acessá-los na forma de atributos nomeados o que torna o código muito mais limpo e legível. Vamos ver agora como criar e desenvolver com essa estrutura.&lt;/p&gt;
+&lt;h2&gt;&lt;strong&gt;Criando uma namedtuple&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Para criar uma namedtuple primeiramente precisamos importa-la do módulo collections.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collection&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Com a possibilidade de criar namedtuples podemos agora análisar as principais diferenças entre elas e as tuples, para isso vou utilizar como exemplo o cadastro de um cliente de um banco. Para definir o cliente, preciso do &lt;code&gt;nome completo&lt;/code&gt;, &lt;code&gt;agencia&lt;/code&gt; e &lt;code&gt;conta&lt;/code&gt;. Como esses dados são imutáveis, é natural pensarmos em armazena-los em uma tuple. Como será feito a seguir:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Rodrigo Bernardo Medeiros&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;agencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;8475&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;conta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;09350-9&amp;#39;&lt;/span&gt;
+
+&lt;span class="c1"&gt;# CRIANDO UMA TUPLE&lt;/span&gt;
+&lt;span class="c1"&gt;# 1° Forma de definção de tuples&lt;/span&gt;
+&lt;span class="c1"&gt;# - Chamando a key word tuple e passando uma coleção, uma lista por exemplo.&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;tuple&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;agencia&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conta&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 2° Forma de definição de tuples&lt;/span&gt;
+&lt;span class="c1"&gt;# - Simplesmente passando os valores entre parentesis separados por vírgula.&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;agencia&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conta&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# CRIANDO UMA NAMEDTUPLE&lt;/span&gt;
+&lt;span class="c1"&gt;# Definição de uma namedtuple&lt;/span&gt;
+&lt;span class="c1"&gt;# 1° Criação de uma instância namedtuple&lt;/span&gt;
+&lt;span class="n"&gt;Cliente&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Cliente&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;nome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;agencia&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;conta&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Cliente&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;agencia&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conta&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;O processo de criação de uma namedtuple difere da criação de uma tuple com um passo adicional, primeiro criamos uma namedtuple com as características específicas do problema a ser resolvido, no caso uma namedtuple chamada &lt;code&gt;Cliente&lt;/code&gt;, com os atributos &lt;code&gt;nome&lt;/code&gt;, &lt;code&gt;agencia&lt;/code&gt; e &lt;code&gt;conta&lt;/code&gt;. Em um segundo momento criamos uma instância da namedtuple Cliente onde de fato vamos definir cada um dos campos para cada cliente específico do banco. Com isso temos então um objeto imutável, derivado de uma tuple e com seus elementos sendo acessados através de atributos.&lt;/p&gt;
+&lt;h2&gt;&lt;strong&gt;Acessando elementos de uma namedtuple&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;A principal vantagem de uma namedtuple é poder acessar os elementos através de campos nomeados, o que torna o código muito mais limpo e legível e neste caso podemos acessar os elementos também através de índices como mostrado a seguir:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# ACESSANDO ELEMENTOS VIA NOME DOS ATRIBUTOS&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="c1"&gt;# &amp;gt; Retorna o nome Rodrigo Bernardo Medeiros&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;agencia&lt;/span&gt; &lt;span class="c1"&gt;# &amp;gt; Retorna a agencia 8475&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conta&lt;/span&gt; &lt;span class="c1"&gt;# &amp;gt; Retorna a conta 09350-9&lt;/span&gt;
+
+&lt;span class="c1"&gt;# ACESSANDO ELEMENTOS VIA ÍNDICES&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# &amp;gt; Retorna o nome Rodrigo Bernardo Medeiros&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# &amp;gt; Retorna a agencia 8475&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# &amp;gt; Retorna a conta 09350-9&lt;/span&gt;
+
+&lt;span class="c1"&gt;# ITERANDO SOBRE ATRIBUTOS&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;att&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;cliente&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; 
+
+    &lt;span class="c1"&gt;# PRIMEIRO LOOP RETORNA O NOME&lt;/span&gt;
+    &lt;span class="c1"&gt;# SEGUNDO LOOP RETORNA A AGENCIA&lt;/span&gt;
+    &lt;span class="c1"&gt;# TERCEIRO LOOP RETORNA A CONTA   &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;A estrutura das namedtuples são ideais para armazenar informação de modo organizado, tendo toda a estrutura de implementação das tuples com o fator adicional da nomeação dos campos. No exemplo acima, pensando no que está armazenado, ao fazer o acesso através dos índices, podemos pensar que cada índice seria um cliente, o que dificultaria o entendimento do código já que na verdade cada campo representa uma característica de um cliente.&lt;/p&gt;
+&lt;h2&gt;&lt;strong&gt;Mais sobre namedtuples&lt;/strong&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Converão namedtuple x dicionário.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Podemos facilmente converter as namedtuples em dicionários através do código a seguir.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;cliente&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_asdict&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Retorna um dicionário onde cada campo nomeado se transforma em uma chave&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;nome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Rodrigo Bernardo Medeiros&amp;#39;&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;agencia&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;8475&amp;#39;&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;conta&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;09350-9&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Conversão dicionário x namedtuple&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Assim como a conversão namedtuple em dicionário, podemos facilmente fazer o inverso.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;cliente_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;nome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Rodrigo Bernardo Medeiros&amp;#39;&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;agencia&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;8475&amp;#39;&lt;/span&gt;
+    &lt;span class="s1"&gt;&amp;#39;conta&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;09350-9&amp;#39;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Há o desempacotamento de informações associando os valores aos campos nomeados da namedtuple.&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Cliente&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;cliente_info&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Obtendo o nome dos campos&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;É possível obter o nome dos campos definidos na criação da namedtuple, essa informação pode ser utilizada para criar novas named tuples por exemplo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;cliente&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;_fields&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Retorna os campos listados em uma tuple. &lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;nome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;agencia&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;conta&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Criando classes derivadas de namedtuples&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Podemos criar classes que herdam os atributos de uma namedtuple, com isso podemos construir métodos em uma classe considerando os atrbutos nomeados na definição da namedtuple.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;Cliente&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Cliente&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;nome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;agencia&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;conta&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ClientInformationGenerator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;Cliente&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;mount_information&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;agencia&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conta&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Neste exemplo, a classe &lt;code&gt;ClienteInformationGenerator&lt;/code&gt; herda os atributos da namedtuple, com isso ao definir o método &lt;code&gt;mount_information&lt;/code&gt;, posso acessar a informação através dos nomes definidos previamente.&lt;/p&gt;
+&lt;h2&gt;&lt;strong&gt;Conclusão&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Vimos neste artigo todo o necessário para entender e começar a utilizar as namedtuples, e já digo que é um caminho sem volta, ao começar utilizar vocês vão identificar cada vez mais pontos em seus códigos onde uma namedtuple pode encaixar bem (acreditem, aconteceu comigo). Vale a pena também explorar a &lt;a href="https://docs.python.org/3/library/collections.html#namedtuple-factory-function-for-tuples-with-named-fields"&gt;documentação&lt;/a&gt;, por lá vocês podem encontrar mais informação e exemplos das namedtuples e das outras estruturas de dados contidas no módulo collection. No mais, foi um prazer escrever mais um post principalmente sobre esta estrutura de dados que tenho utilizado muito.&lt;/p&gt;
+&lt;p&gt;Obrigado pela leitura.&lt;/p&gt;
+&lt;p&gt;Um grande abraço e até a próxima.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Rodrigo B. Medeiros&lt;/strong&gt;&lt;/p&gt;</content><category term="Articles"></category></entry><entry><title>4 Regras do Projeto Simples</title><link href="/4-regras-do-projeto-simples.html" rel="alternate"></link><published>2021-03-21T22:00:00-03:00</published><updated>2021-03-21T22:00:00-03:00</updated><author><name>Rodrigo B. Medeiros</name></author><id>tag:None,2021-03-21:/4-regras-do-projeto-simples.html</id><summary type="html">&lt;p&gt;&lt;img alt="" src="images/cleanCode.jpg"&gt;&lt;/p&gt;
 &lt;h1&gt;4 Regras do Projeto Simples&lt;/h1&gt;
 &lt;p&gt;Logo no início da minha jornada de transição de carreira, comecei a ver muita coisa sobre desenvolvimento de software, incluindo cursos, livros, perfis em redes sociais, canais no youtube, entre outras diversas fontes. E é claro que sofri o que acredito que muitas pessoas sofram …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="" src="images/cleanCode.jpg"&gt;&lt;/p&gt;
 &lt;h1&gt;4 Regras do Projeto Simples&lt;/h1&gt;

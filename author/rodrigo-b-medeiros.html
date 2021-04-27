@@ -19,7 +19,150 @@
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/4-regras-do-projeto-simples.html">4 Regras do Projeto Simples</a></h1>
+                    <h1 class="entry-title"><a href="/voces-precisam-conhecer-as-namedtuples.html">Vocês precisam conhecer as namedtuples</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2021-04-27T16:00:00-03:00">
+                Published: ter 27 abril 2021
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/rodrigo-b-medeiros.html">Rodrigo B. Medeiros</a>
+        </address>
+<p>In <a href="/category/articles.html">Articles</a>.</p>
+
+</footer><!-- /.post-info --><p><img alt="" src="images/PythonNamedTuple.jpeg"></p>
+<h1><strong>Vocês precisam conhecer as namedtuples</strong></h1>
+<p>Mesmo quem começou a desenvolver em python faz pouco tempo (me incluo nessa categoria), tem familiariade com algumas estruturas de dados que são muito presentes na linguagem, como as listas, os dicionários, os sets e as tuples. Diria que conhecendo bem essas estruturas, é possível resolver uma grande variedade de problemas, onde cada estrutura tem suas peculiaridades. Uma comparação muito comum é entre listas e tuples, onde a principal diferença é que as listas são mutáveis, ou seja permitem modificações após sua criação, e as tuples são imutáveis, ou seja não permitem modificações após sua criação. Com relação as similaridades, listas e tuples aceitam elementos de tipos diferentes em uma mesma instância, tem os elementos acessados via índice e são usadas para agrupar informação.
+Passei algum tempo utilizando essas estruturas e elas sempre funcionaram muito bem para mim. Porém há alguns meses, fazendo alguns desafios de código pela plataforma <a href="https://pybit.es/">pybites</a> me deparei com algumas novas estruturas presentes no módulo <strong>collections</strong>, que são basicamente subclasses das estruturas básicas com algumas funcionalidades especificas adicionadas. Dentre elas, tem uma em especial que passei a utilizar em praticamente todos os meus códigos e é sobre ela que vou falar um pouco mais hoje. São as <strong>namedtuples</strong>.</p>
+<p>Neste artigo vamos ver:</p>
+<ul>
+<li>O que são namedtuples.</li>
+<li>Como criar uma namedtuple.  </li>
+<li>Como acessar elementos de uma namedtuple.  </li>
+<li>Como converter uma namedtuple em um dicionário (e vice-versa).</li>
+<li>Como utilizar namedtuples para criar classes derivadas.</li>
+</ul>
+<h2><strong>O que são namedtuples?</strong></h2>
+<p>Namedtuple é uma subclasse da classe tuple com a diferença básica de terem campos nomeados. Ou seja, além de podermos acessar os elementos através do índice e iterando entre eles, podemos acessá-los na forma de atributos nomeados o que torna o código muito mais limpo e legível. Vamos ver agora como criar e desenvolver com essa estrutura.</p>
+<h2><strong>Criando uma namedtuple</strong></h2>
+<p>Para criar uma namedtuple primeiramente precisamos importa-la do módulo collections.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">collection</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+</code></pre></div>
+
+<p>Com a possibilidade de criar namedtuples podemos agora análisar as principais diferenças entre elas e as tuples, para isso vou utilizar como exemplo o cadastro de um cliente de um banco. Para definir o cliente, preciso do <code>nome completo</code>, <code>agencia</code> e <code>conta</code>. Como esses dados são imutáveis, é natural pensarmos em armazena-los em uma tuple. Como será feito a seguir:</p>
+<div class="highlight"><pre><span></span><code><span class="n">nome</span> <span class="o">=</span> <span class="s1">&#39;Rodrigo Bernardo Medeiros&#39;</span>
+<span class="n">agencia</span> <span class="o">=</span> <span class="s1">&#39;8475&#39;</span>
+<span class="n">conta</span> <span class="o">=</span> <span class="s1">&#39;09350-9&#39;</span>
+
+<span class="c1"># CRIANDO UMA TUPLE</span>
+<span class="c1"># 1° Forma de definção de tuples</span>
+<span class="c1"># - Chamando a key word tuple e passando uma coleção, uma lista por exemplo.</span>
+<span class="n">cliente</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="n">nome</span><span class="p">,</span> <span class="n">agencia</span><span class="p">,</span> <span class="n">conta</span><span class="p">])</span>
+
+<span class="c1"># 2° Forma de definição de tuples</span>
+<span class="c1"># - Simplesmente passando os valores entre parentesis separados por vírgula.</span>
+<span class="n">cliente</span> <span class="o">=</span> <span class="p">(</span><span class="n">nome</span><span class="p">,</span> <span class="n">agencia</span><span class="p">,</span> <span class="n">conta</span><span class="p">)</span>
+
+<span class="c1"># CRIANDO UMA NAMEDTUPLE</span>
+<span class="c1"># Definição de uma namedtuple</span>
+<span class="c1"># 1° Criação de uma instância namedtuple</span>
+<span class="n">Cliente</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Cliente&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;nome&#39;</span><span class="p">,</span> <span class="s1">&#39;agencia&#39;</span><span class="p">,</span> <span class="s1">&#39;conta&#39;</span><span class="p">])</span>
+<span class="n">cliente</span> <span class="o">=</span> <span class="n">Cliente</span><span class="p">(</span><span class="n">nome</span><span class="p">,</span> <span class="n">agencia</span><span class="p">,</span> <span class="n">conta</span><span class="p">)</span>
+</code></pre></div>
+
+<p>O processo de criação de uma namedtuple difere da criação de uma tuple com um passo adicional, primeiro criamos uma namedtuple com as características específicas do problema a ser resolvido, no caso uma namedtuple chamada <code>Cliente</code>, com os atributos <code>nome</code>, <code>agencia</code> e <code>conta</code>. Em um segundo momento criamos uma instância da namedtuple Cliente onde de fato vamos definir cada um dos campos para cada cliente específico do banco. Com isso temos então um objeto imutável, derivado de uma tuple e com seus elementos sendo acessados através de atributos.</p>
+<h2><strong>Acessando elementos de uma namedtuple</strong></h2>
+<p>A principal vantagem de uma namedtuple é poder acessar os elementos através de campos nomeados, o que torna o código muito mais limpo e legível e neste caso podemos acessar os elementos também através de índices como mostrado a seguir:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ACESSANDO ELEMENTOS VIA NOME DOS ATRIBUTOS</span>
+<span class="n">cliente</span><span class="o">.</span><span class="n">nome</span> <span class="c1"># &gt; Retorna o nome Rodrigo Bernardo Medeiros</span>
+<span class="n">cliente</span><span class="o">.</span><span class="n">agencia</span> <span class="c1"># &gt; Retorna a agencia 8475</span>
+<span class="n">cliente</span><span class="o">.</span><span class="n">conta</span> <span class="c1"># &gt; Retorna a conta 09350-9</span>
+
+<span class="c1"># ACESSANDO ELEMENTOS VIA ÍNDICES</span>
+<span class="n">cliente</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># &gt; Retorna o nome Rodrigo Bernardo Medeiros</span>
+<span class="n">cliente</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># &gt; Retorna a agencia 8475</span>
+<span class="n">cliente</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># &gt; Retorna a conta 09350-9</span>
+
+<span class="c1"># ITERANDO SOBRE ATRIBUTOS</span>
+<span class="k">for</span> <span class="n">att</span> <span class="ow">in</span> <span class="n">cliente</span><span class="p">:</span> 
+
+    <span class="c1"># PRIMEIRO LOOP RETORNA O NOME</span>
+    <span class="c1"># SEGUNDO LOOP RETORNA A AGENCIA</span>
+    <span class="c1"># TERCEIRO LOOP RETORNA A CONTA   </span>
+</code></pre></div>
+
+<p>A estrutura das namedtuples são ideais para armazenar informação de modo organizado, tendo toda a estrutura de implementação das tuples com o fator adicional da nomeação dos campos. No exemplo acima, pensando no que está armazenado, ao fazer o acesso através dos índices, podemos pensar que cada índice seria um cliente, o que dificultaria o entendimento do código já que na verdade cada campo representa uma característica de um cliente.</p>
+<h2><strong>Mais sobre namedtuples</strong></h2>
+<ul>
+<li><strong>Converão namedtuple x dicionário.</strong></li>
+</ul>
+<p>Podemos facilmente converter as namedtuples em dicionários através do código a seguir.</p>
+<div class="highlight"><pre><span></span><code><span class="n">cliente</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span>
+
+<span class="c1"># Retorna um dicionário onde cada campo nomeado se transforma em uma chave</span>
+<span class="p">{</span>
+    <span class="s1">&#39;nome&#39;</span><span class="p">:</span> <span class="s1">&#39;Rodrigo Bernardo Medeiros&#39;</span>
+    <span class="s1">&#39;agencia&#39;</span><span class="p">:</span> <span class="s1">&#39;8475&#39;</span>
+    <span class="s1">&#39;conta&#39;</span><span class="p">:</span> <span class="s1">&#39;09350-9&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<ul>
+<li><strong>Conversão dicionário x namedtuple</strong></li>
+</ul>
+<p>Assim como a conversão namedtuple em dicionário, podemos facilmente fazer o inverso.</p>
+<div class="highlight"><pre><span></span><code><span class="n">cliente_info</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;nome&#39;</span><span class="p">:</span> <span class="s1">&#39;Rodrigo Bernardo Medeiros&#39;</span>
+    <span class="s1">&#39;agencia&#39;</span><span class="p">:</span> <span class="s1">&#39;8475&#39;</span>
+    <span class="s1">&#39;conta&#39;</span><span class="p">:</span> <span class="s1">&#39;09350-9&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Há o desempacotamento de informações associando os valores aos campos nomeados da namedtuple.</span>
+<span class="n">cliente</span> <span class="o">=</span> <span class="n">Cliente</span><span class="p">(</span><span class="o">**</span><span class="n">cliente_info</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li><strong>Obtendo o nome dos campos</strong></li>
+</ul>
+<p>É possível obter o nome dos campos definidos na criação da namedtuple, essa informação pode ser utilizada para criar novas named tuples por exemplo.</p>
+<div class="highlight"><pre><span></span><code><span class="n">cliente</span><span class="o">.</span><span class="n">_fields</span>
+
+<span class="c1"># Retorna os campos listados em uma tuple. </span>
+<span class="p">(</span><span class="s1">&#39;nome&#39;</span><span class="p">,</span> <span class="s1">&#39;agencia&#39;</span><span class="p">,</span> <span class="s1">&#39;conta&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li><strong>Criando classes derivadas de namedtuples</strong></li>
+</ul>
+<p>Podemos criar classes que herdam os atributos de uma namedtuple, com isso podemos construir métodos em uma classe considerando os atrbutos nomeados na definição da namedtuple.</p>
+<div class="highlight"><pre><span></span><code><span class="n">Cliente</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Cliente&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;nome&#39;</span><span class="p">,</span> <span class="s1">&#39;agencia&#39;</span><span class="p">,</span> <span class="s1">&#39;conta&#39;</span><span class="p">])</span>
+
+<span class="k">class</span> <span class="nc">ClientInformationGenerator</span><span class="p">(</span><span class="n">Cliente</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">mount_information</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nome</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">agencia</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">conta</span>
+</code></pre></div>
+
+<p>Neste exemplo, a classe <code>ClienteInformationGenerator</code> herda os atributos da namedtuple, com isso ao definir o método <code>mount_information</code>, posso acessar a informação através dos nomes definidos previamente.</p>
+<h2><strong>Conclusão</strong></h2>
+<p>Vimos neste artigo todo o necessário para entender e começar a utilizar as namedtuples, e já digo que é um caminho sem volta, ao começar utilizar vocês vão identificar cada vez mais pontos em seus códigos onde uma namedtuple pode encaixar bem (acreditem, aconteceu comigo). Vale a pena também explorar a <a href="https://docs.python.org/3/library/collections.html#namedtuple-factory-function-for-tuples-with-named-fields">documentação</a>, por lá vocês podem encontrar mais informação e exemplos das namedtuples e das outras estruturas de dados contidas no módulo collection. No mais, foi um prazer escrever mais um post principalmente sobre esta estrutura de dados que tenho utilizado muito.</p>
+<p>Obrigado pela leitura.</p>
+<p>Um grande abraço e até a próxima.</p>
+<p><strong>Rodrigo B. Medeiros</strong></p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/4-regras-do-projeto-simples.html" rel="bookmark"
+                           title="Permalink to 4 Regras do Projeto Simples">4 Regras do Projeto Simples</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2021-03-21T22:00:00-03:00">
                 Published: dom 21 março 2021
@@ -30,34 +173,14 @@
         </address>
 <p>In <a href="/category/articles.html">Articles</a>.</p>
 
-</footer><!-- /.post-info --><p><img alt="" src="images/cleanCode.jpg"></p>
+</footer><!-- /.post-info -->                <p><img alt="" src="images/cleanCode.jpg"></p>
 <h1>4 Regras do Projeto Simples</h1>
-<p>Logo no início da minha jornada de transição de carreira, comecei a ver muita coisa sobre desenvolvimento de software, incluindo cursos, livros, perfis em redes sociais, canais no youtube, entre outras diversas fontes. E é claro que sofri o que acredito que muitas pessoas sofram, ter muito conteúdo disponível, porém sem saber como começar e pra onde ir.
-Um dos livros que mais ouvi falar e que adquiri rapidamente foi o <code>Clean Code</code> do dignissimo uncle Bob. Este é um dos livros que grande parte da comunidade cita como sendo uma referência, leitura obrigatória. Na época, comecei a lê-lo, mas, de fato, estava bem no início de tudo e não consegui entender grande parte de seu conteúdo.
-Há poucos dias, peguei o livro novamente, quase um ano depois da leitura inicial, com um objetivo em mente: estudá-lo em detalhes, absorvendo o máximo possível dos ensinamentos e utilizando cada tópico o mais rápido possível em meu dia a dia. E como criei o blog pensando principalmente em compartilhar conhecimento, vou utilizar alguns posts para falar um pouco sobre o que foi aprendido ao longo dos capítulos do livro.
-Hoje vou falar um pouco sobre o <code>capítulo 12 - Emergências</code>, que apesar deste título, aborda principalmente a definição de 4 regras simples para o desenvolvimento de um bom projeto de software. De acordo com Kent Beck, as 4 regras são as seguintes:</p>
-<ul>
-<li>Efetuar todos os testes.</li>
-<li>Sem duplicação de código (DRY - Don't Repeat Yourself).</li>
-<li>Expressar o propósito do programador.</li>
-<li>Minimizar o número de classes e métodos.</li>
-</ul>
-<p>Agora vamos entrar um pouco mais no detalhe de cada uma dessas regras.</p>
-<h2>1) Efetuar todos os testes.</h2>
-<p>Quanto mais me aprofundo no estudo de desenvolvimento de software, mais eu entendo (ou começo a entender) a necessidade da construção de testes, de maneira organizada e cobrindo o mais detalhadamente possível cada aspecto do código. A criação de um bom conjunto de testes direciona o desenvolvimento para a construção de um software melhor, com responsabilidades bem definidas em cada um de seus componentes. Pensando no aspecto de classes, por exemplo, teremos classes que, em sua maioria, serão pequenas e de propósito único. Um código com testes bem definidos, pode ser refatorado quando necessário, submetido aos testes novamente e se aprovado, temos a garantia que tudo está funcionando como deveria estar. Um software sem testes não serve de nada, pois não temos a garantia do que foi escrito realmente funciona na prática. Então, o aspecto mais importante desta regra é: teste, teste, teste e teste novamente.</p>
-<h2>2) Sem duplicação.</h2>
-<p>Essa parte é a parte que ouvimos falar a todo momento através do famoso acrônimo DRY ou Don't Repeat Yourself ou, em bom português, "Não Se Repita". É importante identificar trechos repetidos, exatamente pela repetição ser uma grande fonte de erros. Imagine um código com essa característica onde seja necessário alterar algo. Você precisaria mapear e fazer a alteração em todos os lugares de maneira correta para que tudo continue funcionando perfeitamente. Podemos ver que isso não é legal, e uncle Bob ainda se aprofunda mais, imagine que você não tenha estruturas repetidas exatamente iguais, mas similares de modo que sejam casos específicos de uma estrutura mais geral. Definindo essa estrutura mais geral como um método, por exemplo, podemos observar que uma classe deixa de respeitar o principio de responsabilidade única. Podemos, assim, extrair a responsabilidade adicional para uma nova classe, e mais ainda, essa nova classe pode ser reutilizada em outros pontos do código. Ou seja, além de eliminar uma fonte de problemas, melhoramos o nosso software. Isto á fantástico!</p>
-<h2>3) Expressividade.</h2>
-<p>Primeiro, uma pergunta: onde estão os maiores custos de um projeto de software? Acertou quem respondeu que é na manutenção de longo prazo. E por que isso ocorre? Bom, principalmente, devido a dificuldade em entender 100% tudo que um sistema faz, cada detalhe, cada classe ou método. O que torna extremamente difícil implementar melhorias, refatorar, escalar e até mesmo o principal, que é fazer o sistema continuar funcionando corretamente. Com isso, é muito importante arquitetar bem o software, se importar em nomear bem classes, métodos e variáveis. Ao desenvolver, devemos sempre pensar que em um futuro próximo, aquele ponto será revisitado por nós mesmos ou por outras pessoas, e é fundamental que tudo seja entendido rapidamente para que possamos investir o tempo onde realmente importa. Aqui novamente vemos a importância dos testes, quando bem escritos, os testes tem a capacidade de explicar o que o código faz e o que devemos esperar de cada trecho o que facilita bastante o trabalho em um sistema legado. Aproveitando para lembrar a regra número um, teste, teste e teste novamente.</p>
-<h2>4) Poucas classes ou métodos.</h2>
-<p>A última, mas não menos importante regra, é pensar em desenvolver poucas classes e métodos, mantendo-os enxutos, respeitando, principalmente, o princípio da responsabilidade única. Se conseguirmos desenvolver nosso sistema dentro deste princípio, escreveremos classes que só precisarão ser alteradas por um único motivo, conseguiremos escrever testes melhores que nos conduzirão a um desenvolvimento melhor, o que nos faz entrar em um círculo virtuoso de boas práticas. Claro que é importante ressaltar que, em alguns momentos, este princípio pode ser quebrado, mas a ideia é que mantenhamos em mente a importância desta regra e que, no caso desta ser quebrada, saibamos exatamente o motivo. Nas palavras de uncle Bob, "devemos pensar que nosso sistema como um todo deve ser pequeno. Logo, apesar de ser importante, devemos ser pragmáticos para não exagerar". Ou seja, além de pensar em cada classe e método, não devemos perder de vista a complexidade e tamanho da aplicação como um todo.</p>
-<h2>Conclusão.</h2>
-<p>Bom pessoal, estas foram as 4 regras do projeto simples, e ao analisar cada uma delas, conseguimos enxergar sua importância, principalmente, com relação a testes e o quanto eles são necessários e conduzem a um melhor desenvolvimento. Pensando no livro como um todo, é um capítulo pequeno, mas pesado nas informações e reflexões. Com certeza saio deste trecho um desenvolvedor melhor. Agradeço quem seguiu a leitura até aqui e em breve teremos mais resenhas sobre os demais capítulos. E, de fato, assim como falaram para mim, sugiro fortemente a leitura deste livro. Não só a leitura, mas a reflexão e o principal, a aplicação das ideias no dia a dia.</p>
-<p>Um grande abraço e até o próximo post.</p>
-<p><strong>Rodrigo B. Medeiros</strong></p>
-<p>Para quem tiver interesse segue o link do livro: 
-<a href="https://www.amazon.com.br/C%C3%B3digo-limpo-Robert-C-Martin/dp/8576082675/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&amp;dchild=1&amp;keywords=clean+code&amp;qid=1616373729&amp;sr=8-1">Clean Code</a></p>                </article>
-            </aside><!-- /#featured -->
+<p>Logo no início da minha jornada de transição de carreira, comecei a ver muita coisa sobre desenvolvimento de software, incluindo cursos, livros, perfis em redes sociais, canais no youtube, entre outras diversas fontes. E é claro que sofri o que acredito que muitas pessoas sofram …</p>
+                <a class="readmore" href="/4-regras-do-projeto-simples.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>links</h2>
