@@ -20,7 +20,7 @@ Passei algum tempo utilizando essas estruturas e elas sempre funcionaram muito b
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collection&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Com a possibilidade de criar namedtuples podemos agora análisar as principais diferenças entre elas e as tuples, para isso vou utilizar como exemplo o cadastro de um cliente de um banco. Para definir o cliente, preciso do &lt;code&gt;nome completo&lt;/code&gt;, &lt;code&gt;agencia&lt;/code&gt; e &lt;code&gt;conta&lt;/code&gt;. Como esses dados são imutáveis, é natural pensarmos em armazena-los em uma tuple. Como será feito a seguir:&lt;/p&gt;
+&lt;p&gt;Com a possibilidade de criar namedtuples podemos agora análisar as principais diferenças entre elas e as tuples, para isso vou utilizar como exemplo o cadastro de um cliente de um banco. Para definir o cliente, preciso do &lt;strong&gt;nome completo&lt;/strong&gt;, &lt;strong&gt;agencia&lt;/strong&gt; e &lt;strong&gt;conta&lt;/strong&gt;. Como esses dados são imutáveis, é natural pensarmos em armazena-los em uma tuple. Como será feito a seguir:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Rodrigo Bernardo Medeiros&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;agencia&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;8475&amp;#39;&lt;/span&gt;
 &lt;span class="n"&gt;conta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;09350-9&amp;#39;&lt;/span&gt;
@@ -41,7 +41,7 @@ Passei algum tempo utilizando essas estruturas e elas sempre funcionaram muito b
 &lt;span class="n"&gt;cliente&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Cliente&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;agencia&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;conta&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;O processo de criação de uma namedtuple difere da criação de uma tuple com um passo adicional, primeiro criamos uma namedtuple com as características específicas do problema a ser resolvido, no caso uma namedtuple chamada &lt;code&gt;Cliente&lt;/code&gt;, com os atributos &lt;code&gt;nome&lt;/code&gt;, &lt;code&gt;agencia&lt;/code&gt; e &lt;code&gt;conta&lt;/code&gt;. Em um segundo momento criamos uma instância da namedtuple Cliente onde de fato vamos definir cada um dos campos para cada cliente específico do banco. Com isso temos então um objeto imutável, derivado de uma tuple e com seus elementos sendo acessados através de atributos.&lt;/p&gt;
+&lt;p&gt;O processo de criação de uma namedtuple difere da criação de uma tuple com um passo adicional, primeiro criamos uma namedtuple com as características específicas do problema a ser resolvido, no caso uma namedtuple chamada &lt;strong&gt;Cliente&lt;/strong&gt;, com os atributos &lt;strong&gt;nome&lt;/strong&gt;, &lt;strong&gt;agencia&lt;/strong&gt; e &lt;strong&gt;conta&lt;/strong&gt;. Em um segundo momento criamos uma instância da namedtuple Cliente onde de fato vamos definir cada um dos campos para cada cliente específico do banco. Com isso temos então um objeto imutável, derivado de uma tuple e com seus elementos sendo acessados através de atributos.&lt;/p&gt;
 &lt;h2&gt;&lt;strong&gt;Acessando elementos de uma namedtuple&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;A principal vantagem de uma namedtuple é poder acessar os elementos através de campos nomeados, o que torna o código muito mais limpo e legível e neste caso podemos acessar os elementos também através de índices como mostrado a seguir:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# ACESSANDO ELEMENTOS VIA NOME DOS ATRIBUTOS&lt;/span&gt;
@@ -90,6 +90,9 @@ Passei algum tempo utilizando essas estruturas e elas sempre funcionaram muito b
 
 &lt;span class="c1"&gt;# Há o desempacotamento de informações associando os valores aos campos nomeados da namedtuple.&lt;/span&gt;
 &lt;span class="n"&gt;cliente&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Cliente&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;cliente_info&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="c1"&gt;# &amp;gt; Retorna o nome Rodrigo Bernardo Medeiros&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;agencia&lt;/span&gt; &lt;span class="c1"&gt;# &amp;gt; Retorna a agencia 8475&lt;/span&gt;
+&lt;span class="n"&gt;cliente&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conta&lt;/span&gt; &lt;span class="c1"&gt;# &amp;gt; Retorna a conta 09350-9 &lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;ul&gt;
@@ -115,7 +118,7 @@ Passei algum tempo utilizando essas estruturas e elas sempre funcionaram muito b
         &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nome&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;agencia&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;conta&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;Neste exemplo, a classe &lt;code&gt;ClienteInformationGenerator&lt;/code&gt; herda os atributos da namedtuple, com isso ao definir o método &lt;code&gt;mount_information&lt;/code&gt;, posso acessar a informação através dos nomes definidos previamente.&lt;/p&gt;
+&lt;p&gt;Neste exemplo, a classe &lt;strong&gt;ClienteInformationGenerator&lt;/strong&gt; herda os atributos da namedtuple, com isso ao definir o método &lt;strong&gt;mount_information&lt;/strong&gt;, posso acessar a informação através dos nomes definidos previamente.&lt;/p&gt;
 &lt;h2&gt;&lt;strong&gt;Conclusão&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;Vimos neste artigo todo o necessário para entender e começar a utilizar as namedtuples, e já digo que é um caminho sem volta, ao começar utilizar vocês vão identificar cada vez mais pontos em seus códigos onde uma namedtuple pode encaixar bem (acreditem, aconteceu comigo). Vale a pena também explorar a &lt;a href="https://docs.python.org/3/library/collections.html#namedtuple-factory-function-for-tuples-with-named-fields"&gt;documentação&lt;/a&gt;, por lá vocês podem encontrar mais informação e exemplos das namedtuples e das outras estruturas de dados contidas no módulo collection. No mais, foi um prazer escrever mais um post principalmente sobre esta estrutura de dados que tenho utilizado muito.&lt;/p&gt;
 &lt;p&gt;Obrigado pela leitura.&lt;/p&gt;
