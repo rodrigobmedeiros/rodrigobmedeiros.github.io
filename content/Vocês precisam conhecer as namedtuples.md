@@ -4,6 +4,7 @@ author: Rodrigo B. Medeiros
 category: Articles
 
 ![image][main_image]
+<img src="images/PythonNamedTuple.jpeg" alt="python code" width="200"/>
 
 # __Vocês precisam conhecer as namedtuples__
   
@@ -157,8 +158,3 @@ __Rodrigo B. Medeiros__
 [main_image]:images/PythonNamedTuple.jpeg
 [pybites_link]:https://pybit.es/
 [namedtuples_link]: https://docs.python.org/3/library/collections.html#namedtuple-factory-function-for-tuples-with-named-fields
-
-img[alt="image"] { 
-  max-width:  20px; 
-  display: block;
-}
