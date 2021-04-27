@@ -31,7 +31,7 @@ Para criar uma namedtuple primeiramente precisamos importa-la do módulo collect
 from collection import namedtuple
 ```
 
-Com a possibilidade de criar namedtuples podemos agora análisar as principais diferenças entre elas e as tuples, para isso vou utilizar como exemplo o cadastro de um cliente de um banco. Para definir o cliente, preciso do `nome completo`, `agencia` e `conta`. Como esses dados são imutáveis, é natural pensarmos em armazena-los em uma tuple. Como será feito a seguir:
+Com a possibilidade de criar namedtuples podemos agora análisar as principais diferenças entre elas e as tuples, para isso vou utilizar como exemplo o cadastro de um cliente de um banco. Para definir o cliente, preciso do __nome completo__, __agencia__ e __conta__. Como esses dados são imutáveis, é natural pensarmos em armazena-los em uma tuple. Como será feito a seguir:
 
 ```python
 nome = 'Rodrigo Bernardo Medeiros'
@@ -54,7 +54,7 @@ Cliente = namedtuple('Cliente', ['nome', 'agencia', 'conta'])
 cliente = Cliente(nome, agencia, conta)
 ```
 
-O processo de criação de uma namedtuple difere da criação de uma tuple com um passo adicional, primeiro criamos uma namedtuple com as características específicas do problema a ser resolvido, no caso uma namedtuple chamada `Cliente`, com os atributos `nome`, `agencia` e `conta`. Em um segundo momento criamos uma instância da namedtuple Cliente onde de fato vamos definir cada um dos campos para cada cliente específico do banco. Com isso temos então um objeto imutável, derivado de uma tuple e com seus elementos sendo acessados através de atributos.
+O processo de criação de uma namedtuple difere da criação de uma tuple com um passo adicional, primeiro criamos uma namedtuple com as características específicas do problema a ser resolvido, no caso uma namedtuple chamada __Cliente__, com os atributos __nome__, __agencia__ e __conta__. Em um segundo momento criamos uma instância da namedtuple Cliente onde de fato vamos definir cada um dos campos para cada cliente específico do banco. Com isso temos então um objeto imutável, derivado de uma tuple e com seus elementos sendo acessados através de atributos.
 
 ## __Acessando elementos de uma namedtuple__
 
@@ -112,6 +112,9 @@ cliente_info = {
 
 # Há o desempacotamento de informações associando os valores aos campos nomeados da namedtuple.
 cliente = Cliente(**cliente_info)
+cliente.nome # > Retorna o nome Rodrigo Bernardo Medeiros
+cliente.agencia # > Retorna a agencia 8475
+cliente.conta # > Retorna a conta 09350-9 
 ```
 
 - __Obtendo o nome dos campos__
@@ -139,7 +142,7 @@ class ClientInformationGenerator(Cliente):
         return self.nome + self.agencia + self.conta
 ```
 
-Neste exemplo, a classe `ClienteInformationGenerator` herda os atributos da namedtuple, com isso ao definir o método `mount_information`, posso acessar a informação através dos nomes definidos previamente.
+Neste exemplo, a classe __ClienteInformationGenerator__ herda os atributos da namedtuple, com isso ao definir o método __mount_information__, posso acessar a informação através dos nomes definidos previamente.
 
 ## __Conclusão__
 
