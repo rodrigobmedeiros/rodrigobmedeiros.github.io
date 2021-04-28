@@ -3,7 +3,7 @@ date: 2021-04-27 16:00
 author: Rodrigo B. Medeiros
 category: Articles
 
-<img src="images/PythonNamedTuple.jpeg" alt="python code" width="700"/>
+<img src="images/PythonNamedTuple.jpeg" alt="python code" width="800"/>
 
 # __Vocês precisam conhecer as namedtuples__
   
