@@ -17,7 +17,7 @@ Passei algum tempo utilizando essas estruturas e elas sempre funcionaram muito b
 &lt;p&gt;Namedtuple é uma subclasse da classe tuple com a diferença básica de terem campos nomeados. Ou seja, além de podermos acessar os elementos através do índice e iterando entre eles, podemos acessá-los na forma de atributos nomeados o que torna o código muito mais limpo e legível. Vamos ver agora como criar e desenvolver com essa estrutura.&lt;/p&gt;
 &lt;h2&gt;&lt;strong&gt;Criando uma namedtuple&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;Para criar uma namedtuple primeiramente precisamos importa-la do módulo collections.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collection&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;collections&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;namedtuple&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Com a possibilidade de criar namedtuples podemos agora análisar as principais diferenças entre elas e as tuples, para isso vou utilizar como exemplo o cadastro de um cliente de um banco. Para definir o cliente, preciso do &lt;strong&gt;nome completo&lt;/strong&gt;, &lt;strong&gt;agencia&lt;/strong&gt; e &lt;strong&gt;conta&lt;/strong&gt;. Como esses dados são imutáveis, é natural pensarmos em armazena-los em uma tuple. Como será feito a seguir:&lt;/p&gt;
