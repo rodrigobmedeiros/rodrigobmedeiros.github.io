@@ -28,7 +28,7 @@ Namedtuple é uma subclasse da classe tuple com a diferença básica de terem ca
 Para criar uma namedtuple primeiramente precisamos importa-la do módulo collections.
 
 ```python
-from collection import namedtuple
+from collections import namedtuple
 ```
 
 Com a possibilidade de criar namedtuples podemos agora análisar as principais diferenças entre elas e as tuples, para isso vou utilizar como exemplo o cadastro de um cliente de um banco. Para definir o cliente, preciso do __nome completo__, __agencia__ e __conta__. Como esses dados são imutáveis, é natural pensarmos em armazena-los em uma tuple. Como será feito a seguir:
